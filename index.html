@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ИП Симон Елена Анатольевна | Производство изделий из пластика</title>
+    
+    <!-- Иконки (опционально) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        /* --- СБРОС И БАЗА --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f7fa;
+        }
+        a { text-decoration: none; color: inherit; cursor: pointer; }
+        ul { list-style: none; }
+
+        /* --- ЦВЕТОВАЯ ПАЛИТРА --- */
+        :root {
+            --primary-dark: #1a3a6b;   
+            --primary-blue: #2c7bbd;  
+            --accent-light: #eef3f8;  
+            --white: #ffffff;
+            --gray-text: #555;
+            --border-color: #dbe2e9;
+        }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        .qr-under-heading {
+        text-align: center;
+        margin: 20px 0;
+        }
+       .qr-under-heading img {
+       display: block;
+       margin: 0 auto 8px;
+       }
+
+        /* --- Шапка: базовые стили --- */
+header {
+    background-color: var(--primary-dark);
+    color: var(--white);
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.main-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.logo {
+    flex: 1 1 auto;
+    order: 1;
+}
+
+.mobile-toggle {
+    order: 2;
+    display: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.header-contacts {
+    order: 3;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.contact-separator {
+    color: rgba(255,255,255,0.8);
+    font-size: 1rem;
+}
+
+.email-link, .phone-link {
+    color: var(--white);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.email-link:hover, .phone-link:hover {
+    color: var(--primary-blue);
+}
+
+.nav-links {
+    order: 4;
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links a {
+    color: var(--white);
+    margin-left: 30px;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--primary-blue);
+}
+
+.mobile-menu {
+    order: 5;
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background-color: var(--primary-dark);
+    padding: 10px 0;
+    margin-top: 10px;
+}
+
+.mobile-menu.active {
+    display: flex;
+}
+
+.mobile-menu li {
+    text-align: center;
+    margin: 10px 0;
+}
+
+.mobile-menu a {
+    color: white;
+    font-weight: 500;
+    padding: 8px 0;
+    display: block;
+    text-decoration: none;
+}
+
+/* --- Мобильная версия шапки --- */
+@media (max-width: 600px) {
+    .main-nav {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 10px 0;
+    }
+
+    .logo {
+        order: 1;
+        text-align: left;
+        margin-bottom: 12px;
+    }
+
+    .mobile-toggle {
+        display: block !important;
+        order: 2;
+        align-self: flex-end;
+        margin-top: -10px;
+    }
+
+    .header-contacts {
+        order: 3;
+        justify-content: center;
+        text-align: center;
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .nav-links {
+        order: 4;
+        display: none;
+        width: 100%;
+    }
+}
+
+        /* --- ГЛАВНЫЙ ЭКРАН --- */
+        .hero {
+            padding: 80px 0; text-align: center;
+            background: linear-gradient(135deg, var(--primary-dark), #2c5a8d); color: white;
+        }
+        .hero h1 {
+    font-size: 1.8rem;          /* на мобильном делаем шрифт поменьше */
+    margin-bottom: 20px;
+    line-height: 1.3;           /* строки плотнее, но читаемо */
+    text-align: center;          /* обязательно центрируем на мобильном */
+    word-wrap: break-word;       /* если слово длинное — переносит его, а не выталкивает */
+        }
+        .btn:hover { background-color: #1f5e8c; transform: scale(1.02); }
+
+        /* --- О КОМПАНИИ --- */
+        .about {
+    padding: 40px 20px; /* на мобильном делаем отступы меньше */
+    background: var(--white);
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* на всех экранах сначала 1 колонка */
+    gap: 20px;                 /* уменьшенный отступ */
+    align-items: start;
+}
+
+/* На планшетах и выше — уже 2 колонки */
+@media (min-width: 768px) {
+    .about-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+    }
+}
+
+.about-text h2 {
+    color: var(--primary-dark);
+    margin-bottom: 25px;
+    font-size: 1.8rem;       /* чуть меньше на мобильном */
+}
+
+.about-text p {
+    margin-bottom: 15px;
+    color: #444;
+    line-height: 1.5;
+}
+        /* --- КАТАЛОГ --- */
+        .catalog-section { padding: 80px 0; background-color: var(--accent-light); }
+        .section-title { text-align: center; color: var(--primary-dark); margin-bottom: 50px; font-size: 2rem; }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .category-card {
+            background: white; padding: 30px; border: 1px solid var(--border-color);
+            border-radius: 6px; transition: all 0.3s ease; cursor: default;
+            height: 100%; display: flex; flex-direction: column;
+        }
+        .category-card:hover { box-shadow: 0 10px 20px rgba(0,0,0,0.1); border-color: var(--primary-blue); }
+        .cat-header { margin-bottom: 20px; }
+        .cat-title { color: var(--primary-dark); font-size: 1.5rem; margin-bottom: 10px; 
+                     border-bottom: 2px solid var(--primary-blue); display: inline-block; padding-bottom: 5px;}
+        .cat-desc { color: #666; font-size: 0.95rem; margin-bottom: 20px; }
+
+        .selector-group { margin-top: auto; display: flex; flex-wrap: wrap; gap: 10px; }
+        .select-btn {
+            flex: 1 1 45%; padding: 12px; text-align: center; border: 1px solid #ddd;
+            border-radius: 4px; background: #fff; cursor: pointer; font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+        .select-btn:hover { border-color: var(--primary-blue); background: #f0f8ff; }
+
+        .btn-white { background: #fff; border-color: #ccc; color: #333; }
+        .btn-brown { background: #8B4513; color: white; border-color: #8B4513; }
+        .btn-black { background: #000000; color: white; border-color: #000000; }
+        .btn-graphite { background: #545b62; color: white; border-color: #545b62; }
+        .size-btn { background: #f8f9fa; color: #333; border-color: #ddd; font-weight: bold; }
+        .size-btn:hover { background: var(--primary-blue); color: white; }
+
+        @media (max-width: 600px) { .select-btn { flex: 1 1 100%; } }
+
+        /* --- МОДАЛЬНЫЕ ОКНА: стабильная версия --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(4px);
+    opacity: 0;
+    visibility: hidden;      /* скрываем полностью, чтобы не занимало место */
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-window {
+    background: white;
+    max-width: 550px;
+    width: 90%;              /* на мобильном — почти на всю ширину */
+    padding: 30px;           /* чуть меньше отступ по краям */
+    border-radius: 8px;
+    position: relative;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    transform: translateY(-10px);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.modal-overlay.active .modal-window {
+    transform: translateY(0);
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 1.5rem;
+    color: #999;
+    cursor: pointer;
+}
+
+.close-modal:hover {
+    color: var(--primary-dark);
+}
+
+.modal-img {
+    width: 100%;
+    max-height: 300px;
+    object-fit: contain;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.modal-title {
+    color: var(--primary-dark);
+    font-size: 1.6rem;       /* чуть меньше на мобильных */
+    margin-bottom: 12px;
+}
+
+.modal-desc {
+    color: #555;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.modal-specs {
+    background: #f9fbfd;
+    padding: 16px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+}
+
+.spec-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 6px;
+}
+
+.spec-label {
+    font-weight: 600;
+    color: var(--primary-dark);
+}
+
+.spec-value {
+    color: #333;
+}
+
+.modal-btn {
+    width: 100%;
+    background-color: var(--primary-blue);
+    color: white;
+    padding: 14px;
+    border: none;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.modal-btn:hover {
+    background-color: #1f5e8c;
+}
+
+        /* --- ГАЛЕРЕЯ --- */
+        .gallery { padding: 80px 0; background: var(--white); }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .card { background: #fff; overflow: hidden; border-radius: 4px; border: 1px solid #eee; }
+        .card img { width: 100%; display: block; height: 180px; object-fit: cover; }
+        .card-content { padding: 15px; }
+        .card h3 { color: var(--primary-dark); margin-bottom: 8px; }
+        .card p { color: #666; font-size: 0.9rem; }
+
+        /* Контейнер для двух видео */
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        /* Обертка для каждого видео (сохраняет пропорции 16:9) */
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            background: #000;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Подпись под видео */
+        .video-caption {
+            text-align: center;
+            color: #555;
+            font-size: 0.95rem;
+            margin-top: 15px;
+        }
+
+        /* Блок с 12 фото «Готовые примеры механизмов Комфорт» */
+        .comfort-examples-section {
+           padding: 80px 0;
+           background: var(--accent-light);
+        }
+
+        .product-img {
+           width: 400px;
+           height: 300px;
+           object-fit: cover; /* картинка заполняет блок, не сплющиваясь */
+        }
+
+        .examples-title {
+           text-align: center;
+           color: var(--primary-dark);
+           font-size: 2rem;
+           margin-bottom: 40px;
+        }
+
+        .examples-grid {
+           display: grid;
+           /* 3 колонки на больших экранах */
+           grid-template-columns: repeat(3, 1fr);
+           gap: 15px;
+        }
+
+        /* Адаптив: на планшетах — 2 в ряд */
+        @media (max-width: 1024px) {
+          .examples-grid {
+             grid-template-columns: repeat(2, 1fr);
+          }
+        }
+
+        /* Адаптив: на мобильных — 1 в ряд */
+        @media (max-width: 600px) {
+          .examples-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 1.6rem;       /* ещё чуть меньше на совсем узких экранах */
+        padding: 0 15px;         /* даём по бокам небольшой отступ, чтобы не прилипало к краям */
+    }
+}
+
+        .example-item {
+          background: #fff;
+          border-radius: 4px;
+          overflow: hidden;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .example-item img {
+           width: 100%;
+           height: 180px;
+           object-fit: cover;
+           display: block;
+        }
+
+        .example-caption {
+           padding: 10px;
+           text-align: center;
+           color: #555;
+           font-size: 0.9rem;
+        }
+
+        /* --- ПОДВАЛ --- */
+        footer { background-color: var(--primary-dark); color: rgba(255,255,255,0.8); padding: 40px 0; text-align: center; }
+        .contacts-block {
+  margin-top: 20px;
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+.contacts-block a {
+  color: rgba(255,255,255,0.9);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.contacts-block a:hover {
+  color: var(--primary-blue);
+}
+        <div class="footer-qr">
+        <img src="img/qrcode.png" alt="QR: сайт компании" width="80" height="80">
+        <span>Наш сайт</span>
+     </div>
+  </footer>
+      </style>
+</head>
+<body>
+  
+    <!-- Шапка -->
+    <header>
+    <div class="container">
+        <nav class="main-nav">
+            <!-- 1. Логотип (слева) -->
+            <div class="logo">ИП Симон Елена Анатольевна</div>
+
+            <!-- 2. Кнопка-бургер (справа) -->
+            <div class="mobile-toggle" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+
+            <!-- 3. Контакты (в центре, но на мобильном будут под логотипом) -->
+            <div class="header-contacts">
+                <span class="icon-phone">📞</span>
+                <a href="tel:+7 (928) 229-07-60" class="phone-link">+7 (928) 229-07-60</a>
+                <span class="contact-separator">|</span>
+                <a href="mailto:td_alternativa@mail.ru" class="email-link">✉ td_alternativa@mail.ru</a>
+            </div>
+
+            <!-- 4. Меню (ссылки) -->
+            <ul class="nav-links">
+                <li><a href="#about">О нас</a></li>
+                <li><a href="#catalog">Каталог</a></li>
+                <li><a href="#gallery">Производство</a></li>
+                <li><a href="#video">Видео</a></li>
+                <li><a href="#examples">Готовые примеры</a></li>
+            </ul>
+
+            <!-- 5. Мобильное выпадающее меню -->
+            <ul class="mobile-menu" id="mobileMenu">
+                <li><a href="#about">О нас</a></li>
+                <li><a href="#catalog">Каталог</a></li>
+                <li><a href="#gallery">Производство</a></li>
+                <li><a href="#video">Видео</a></li>
+                <li><a href="#examples">Готовые примеры</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+    <!-- Главный экран -->
+    <section class="hero">
+        <div class="container">
+            <h1>Изделия из пластика<br>для профессионального монтажа</h1>
+            <p>Собственное производство. Строгий контроль качества. Точные размеры.<br>Крепёж, который экономит время на монтаже и снижает риск переделок</p>
+            <a href="#catalog" class="btn">Перейти к каталогу</a>
+        </div>
+    </section>
+
+    <!-- О компании -->
+    <section id="about" class="about">
+        <div class="container about-grid">
+            <div>
+                <!-- Замени src на свою картинку цеха -->
+                <img src="img/o_nas.jpg" alt="Цех производства" loading="lazy" width="300" height="400">            
+             </div>
+            <div class="about-text">
+                <h2>О нас</h2>
+                <p>Мы специализируемся на выпуске крепежных и монтажных элементов из высокопрочного пластика. Наша продукция рассчитана на длительную эксплуатацию в сложных условиях.</p>
+                <p>На производстве используется сырье только проверенных поставщиков, а каждый этап проходит многоступенчатый контроль. Мы не гонимся за дешевизной — мы гарантируем надежность.</p>
+                <p>Минимальный срок изготовления партии — 3 рабочих дня.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Каталог товаров -->
+    <section id="catalog" class="catalog-section">
+        <div class="container">
+            <h2 class="section-title">Наш ассортимент</h2>
+            <div class="products-grid">
+                
+                <!-- КАРТОЧКА 1: МЕХАНИЗМ КОМФОРТ -->
+<article class="category-card">
+  <div class="cat-header">
+    <h3 class="cat-title">Механизм «Комфорт»</h3>
+    <img src="img/comfort.jpg" alt="Механизм «Комфорт»" style="width:100%; height:auto; display:block; border-radius:6px;">
+    <p class="cat-desc">Надёжная система фиксации из ударопрочного ABS‑пластика. Выпускается в четырёх цветах.</p>
+  </div>
+  <div class="selector-group">
+    <button class="select-btn btn-white" onclick="openModal('modal-comfort-white')">Белый</button>
+    <button class="select-btn btn-brown" onclick="openModal('modal-comfort-brown')">Коричневый</button>
+    <button class="select-btn btn-black" onclick="openModal('modal-comfort-black')">Чёрный</button>
+    <button class="select-btn btn-graphite" onclick="openModal('modal-comfort-graphite')">Графит</button>
+  </div>
+</article>
+
+                <!-- КАРТОЧКА 2: ФИКСАТОР ГОФРОТРУБЫ -->
+<article class="category-card">
+  <div class="cat-header">
+    <h3 class="cat-title">Фиксатор гофротрубы</h3>
+    <img src="img/IMG_979032.jpeg" alt="Фиксатор гофротрубы" style="width:100%; height:auto; display:block; border-radius:6px;">
+    <p class="cat-desc">Фиксатор для монтажа внутри здания, в стенах, гипсокартоне и др. Материал: полипропилен. Устойчив к УФ, подходит для внутреннего и наружного применения. Выпускается в двух диаметрах.</p>
+  </div>
+  <div class="selector-group">
+    <button class="select-btn size-btn" onclick="openModal('modal-fixator-16')">16 мм</button>
+    <button class="select-btn size-btn" onclick="openModal('modal-fixator-20')">20 мм</button>
+  </div>
+</article>
+            </div>
+        </div>
+    </section>
+
+    <!-- === МОДАЛЬНЫЕ ОКНА === -->
+
+    <!-- Товар: Комфорт (Белый) -->
+    <div id="modal-comfort-white" class="modal-overlay">
+        <div class="modal-window">
+            <span class="close-modal">&times;</span>
+            <!-- Замени ссылку на реальное фото товара -->
+            <img src="img/comfort_white.jpg" alt="Комфорт Белый" class="modal-img">
+            <h2 class="modal-title">Механизм «Комфорт» (Белый)</h2>
+            <p class="modal-desc">Идеальное решение для светлых интерьеров. Ударопрочный ABS-пластик сохраняет геометрию при перепадах температур.</p>
+            <div class="modal-specs">
+                <div class="spec-row"><span class="spec-label">Материал:</span><span class="spec-value">ABS-пластик</span></div>
+                <div class="spec-row"><span class="spec-label">Цвет:</span><span class="spec-value">Белый</span></div>
+                <div class="spec-row"><span class="spec-label">Тип крепления:</span><span class="spec-value">Винтовое</span></div>
+            </div>
+            <button class="modal-btn" onclick="alert('Заявка отправлена!')">Запросить цену</button>
+        </div>
+    </div>
+
+    <!-- Товар: Комфорт (Коричневый) -->
+    <div id="modal-comfort-brown" class="modal-overlay">
+        <div class="modal-window">
+            <span class="close-modal">&times;</span>
+            <img src="img/comfort_brown.jpg" alt="Комфорт Коричневый" class="modal-img">
+            <h2 class="modal-title">Механизм «Комфорт» (Коричневый)</h2>
+            <p class="modal-desc">Практичный коричневый цвет маскирует загрязнения и сочетается с древесными текстурами.</p>
+            <div class="modal-specs">
+                <div class="spec-row"><span class="spec-label">Материал:</span><span class="spec-value">ABS-пластик</span></div>
+                <div class="spec-row"><span class="spec-label">Цвет:</span><span class="spec-value">Коричневый</span></div>
+                <div class="spec-row"><span class="spec-label">Тип крепления:</span><span class="spec-value">Винтовое</span></div>
+            </div>
+            <button class="modal-btn" onclick="alert('Заявка отправлена!')">Запросить цену</button>
+        </div>
+    </div>
+
+    <!-- Товар: Комфорт (Черный) -->
+    <div id="modal-comfort-black" class="modal-overlay">
+        <div class="modal-window">
+            <span class="close-modal">&times;</span>
+            <img src="img/comfort_black.jpg" alt="Комфорт Черный" class="modal-img">
+            <h2 class="modal-title">Механизм «Комфорт» (Черный)</h2>
+            <p class="modal-desc">Строгий черный цвет для профессионального монтажа в технических помещениях.</p>
+            <div class="modal-specs">
+                <div class="spec-row"><span class="spec-label">Материал:</span><span class="spec-value">ABS-пластик</span></div>
+                <div class="spec-row"><span class="spec-label">Цвет:</span><span class="spec-value">Черный</span></div>
+                <div class="spec-row"><span class="spec-label">Тип крепления:</span><span class="spec-value">Винтовое</span></div>
+            </div>
+            <button class="modal-btn" onclick="alert('Заявка отправлена!')">Запросить цену</button>
+        </div>
+    </div>
+
+    <!-- Товар: Комфорт (Графит) -->
+    <div id="modal-comfort-graphite" class="modal-overlay">
+        <div class="modal-window">
+            <span class="close-modal">&times;</span>
+            <img src="img/comfort_grafit.jpg" alt="Комфорт Графит" class="modal-img">
+            <h2 class="modal-title">Механизм «Комфорт» (Графит)</h2>
+            <p class="modal-desc">Стильный графитовый оттенок для современных инженерных решений.</p>
+            <div class="modal-specs">
+                <div class="spec-row"><span class="spec-label">Материал:</span><span class="spec-value">ABS-пластик</span></div>
+                <div class="spec-row"><span class="spec-label">Цвет:</span><span class="spec-value">Графит</span></div>
+                <div class="spec-row"><span class="spec-label">Тип крепления:</span><span class="spec-value">Винтовое</span></div>
+            </div>
+            <button class="modal-btn" onclick="alert('Заявка отправлена!')">Запросить цену</button>
+        </div>
+    </div>
+
+    <!-- Товар: Фиксатор (16 мм) -->
+    <div id="modal-fixator-16" class="modal-overlay">
+        <div class="modal-window">
+            <span class="close-modal">&times;</span>
+            <img src="img/16.jpg" alt="Фиксатор 16мм" class="modal-img">
+            <h2 class="modal-title">Фиксатор гофротрубы (16 мм)</h2>
+            <p class="modal-desc">Оптимальный размер для крепления тонких гофрированных труб в кабель-каналах и лотках.</p>
+            <div class="modal-specs">
+                <div class="spec-row"><span class="spec-label">Материал:</span><span class="spec-value">Полипропилен (PPR)</span></div>
+                <div class="spec-row"><span class="spec-label">Диаметр трубы:</span><span class="spec-value">16 мм</span></div>
+                <div class="spec-row"><span class="spec-label">Монтаж:</span><span class="spec-value"> Для гофротрубы диаметром 16 мм, необходимо отверстие 18 мм</span></div>
+            </div>
+            <button class="modal-btn" onclick="alert('Заявка отправлена!')">Запросить цену</button>
+        </div>
+    </div>
+
+    <!-- Товар: Фиксатор (20 мм) -->
+    <div id="modal-fixator-20" class="modal-overlay">
+        <div class="modal-window">
+            <span class="close-modal">&times;</span>
+            <img src="img/20.jpg" alt="Фиксатор 20мм" class="modal-img">
+            <h2 class="modal-title">Фиксатор гофротрубы (20 мм)</h2>
+            <p class="modal-desc">Усиленная модель для труб увеличенного диаметра. Подходит для тяжелых кабелей.</p>
+            <div class="modal-specs">
+                <div class="spec-row"><span class="spec-label">Материал:</span><span class="spec-value">Полипропилен (PPR)</span></div>
+                <div class="spec-row"><span class="spec-label">Диаметр трубы:</span><span class="spec-value">20 мм</span></div>
+                <div class="spec-row"><span class="spec-label">Монтаж:</span><span class="spec-value"> Для гофротрубы диаметром 20 мм, необходимо отверстие 22 мм</span></div>
+            </div>
+            <button class="modal-btn" onclick="alert('Заявка отправлена!')">Запросить цену</button>
+        </div>
+    </div>
+
+    <!-- Галерея (Фото с описанием) -->
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <h2 class="section-title">Наше производство</h2>
+            <div class="gallery-grid">
+                <!-- Карточка 1 -->
+                <div class="card">
+                    <!-- Вставь сюда свои фото цеха -->
+                    <img src="img/ceh2.jpg" alt="Цех">
+                    <div class="card-content">
+                        <h3>Производственный цех</h3>
+                        <p>Современное оборудование для литья и обработки пластика.</p>
+                    </div>
+                </div>
+                <!-- Карточка 2 -->
+                <div class="card">
+                    <img src="img/kachestvo.jpg" alt="Качество">
+                    <div class="card-content">
+                        <h3>Контроль качества</h3>
+                        <p>Каждая партия проходит проверку на прочность и геометрию.</p>
+                    </div>
+                </div>
+                <!-- Карточка 3 -->
+                <div class="card">
+                    <img src="img/fiksator_gofrotruby_2020.jpg" alt="Упаковка">
+                    <div class="card-content">
+                        <h3>Упаковка</h3>
+                        <p>Отлаженная система упаковки готовых изделий.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Видео -->
+<section id="video" class="video-section">
+    <div class="container">
+        <h2 class="section-title">Обзор наших готовых изделий</h2>
+        
+        <div class="videos-grid">
+            <!-- Видео 1 -->
+            <div class="video-wrapper">
+                <iframe width="720" height="405" src="https://rutube.ru/play/embed/abad23e08f0b1dcfb3ccf8f2207889cb"  allow="clipboard-write; autoplay" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+                <p class="video-caption">Фиксатор гофротрубы</p>
+            </div>
+
+            <!-- Видео 2 -->
+            <div class="video-wrapper">
+                <iframe width="720" height="405" src="https://rutube.ru/play/embed/f441fc1dae8e933904c2ca9ca87145cc"  allow="clipboard-write; autoplay" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+                <p class="video-caption">Механизмы "Комфорт"</p>
+            </div>
+        </div>
+
+        <div class="video-desc">
+            </div>
+        </div>
+    </section>
+
+          <!-- Примеры использования механизмов "Комфорт" -->
+<section id="examples" class="comfort-examples-section">
+    <div class="container">
+        <h2 class="section-title">Примеры использования механизмов «Комфорт»</h2>
+        <div class="gallery-grid">
+            <!-- Фото 1 -->
+            <div class="example-item">
+                <img src="img/1.webp" alt="Пример установки механизма Комфорт, вариант 1">
+            </div>
+            <!-- Фото 2 -->
+            <div class="example-item">
+                <img src="img/2.webp" alt="Пример установки механизма Комфорт, вариант 2">
+            </div>
+            <!-- Фото 3 -->
+            <div class="example-item">
+                <img src="img/3.webp" alt="Пример установки механизма Комфорт, вариант 3">
+            </div>
+            <!-- Фото 4 -->
+            <div class="example-item">
+                <img src="img/4.webp" alt="Пример установки механизма Комфорт, вариант 4">
+            </div>
+            <!-- Фото 5 -->
+            <div class="example-item">
+                <img src="img/5.webp" alt="Пример установки механизма Комфорт, вариант 5">
+            </div>
+            <!-- Фото 6 -->
+            <div class="example-item">
+                <img src="img/6.webp" alt="Пример установки механизма Комфорт, вариант 6">
+            </div>
+            <!-- Фото 7 -->
+            <div class="example-item">
+                <img src="img/7.webp" alt="Пример установки механизма Комфорт, вариант 7">
+            </div>
+            <!-- Фото 8 -->
+            <div class="example-item">
+                <img src="img/8.webp" alt="Пример установки механизма Комфорт, вариант 8">
+            </div>
+            <!-- Фото 9 -->
+            <div class="example-item">
+                <img src="img/9.webp" alt="Пример установки механизма Комфорт, вариант 9">
+            </div>
+            <!-- Фото 10 -->
+            <div class="example-item">
+                <img src="img/10.webp" alt="Пример установки механизма Комфорт, вариант 10">
+            </div>
+            <!-- Фото 11 -->
+            <div class="example-item">
+                <img src="img/11.webp" alt="Пример установки механизма Комфорт, вариант 11">
+            </div>
+            <!-- Фото 12 -->
+            <div class="example-item">
+                <img src="img/12.webp" alt="Пример установки механизма Комфорт, вариант 12">
+            </div>
+        </div>
+    </div>
+</section>
+
+          <!-- Подвал -->
+    <footer>
+  <div class="container">
+    <h3>ИП Симон Елена Анатольевна</h3>
+    <div class="contacts-block">
+      <p>ИНН 616302986048</p>
+      <p>📞 <a href="tel:+7 (928) 229-07-60" class="phone-link">+7 (928) 229-07-60</a></p>
+      <p>✉ <a href="mailto:td_alternativa@mail.ru" class="email-link">td_alternativa@mail.ru</a></p>
+      <p>📍 г. Ростов-на-Дону, ул. Оганова, 33</p>
+      <p>&copy; 2026 Все права защищены</p>
+    </div>
+
+    <div class="footer-qr">
+      <img src="img/qrcode.png" alt="QR: сайт компании" width="80" height="80">
+      <span>Наш сайт</span>
+    </div>
+  </div>
+</footer>
+
+    <!-- JavaScript для работы модальных окон -->
+    <script>
+        // Функция открытия модального окна
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.add('active');
+            }
+        }
+        // Функция закрытия модального окна
+        function closeModal(modal) {
+            modal.classList.remove('active');
+        }
+
+        // Закрытие по крестику
+        document.querySelectorAll('.close-modal').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation(); // Чтобы клик не ушел на фон
+                closeModal(btn.closest('.modal-overlay'));
+            });
+        });
+
+        // Закрытие по клику вне окна (на затемненный фон)
+        document.querySelectorAll('.modal-overlay').forEach(overlay => {
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) { // Клик именно по фону, а не по окну
+                    closeModal(overlay);
+                }
+            });
+        });
+    </script>
+<script>
+    // ... твой старый скрипт для модалок ...
+
+    // НОВАЯ ФУНКЦИЯ: Переключение мобильного меню
+    function toggleMenu() {
+        const menu = document.getElementById('mobileMenu');
+        menu.classList.toggle('active');
+        
+        // Меняем иконку: три полоски -> крестик и обратно
+        const toggleBtn = document.querySelector('.mobile-toggle i');
+        if (menu.classList.contains('active')) {
+            toggleBtn.classList.remove('fa-bars');
+            toggleBtn.classList.add('fa-times');
+        } else {
+            toggleBtn.classList.remove('fa-times');
+            toggleBtn.classList.add('fa-bars');
+        }
+    }
+</script>
+ </body>
+</html>
